@@ -1,11 +1,7 @@
+// src/utils/load-env.ts
 import { config } from 'dotenv';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+// No need for fileURLToPath if you're in CommonJS now
 const envPath = path.resolve(__dirname, '../../.env');
-
-// Загружаем переменные окружения
 config({ path: envPath });

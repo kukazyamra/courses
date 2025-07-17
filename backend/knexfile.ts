@@ -1,5 +1,5 @@
 import type { Knex } from 'knex';
-import './src/utils/load-env.js'
+import './src/utils/load-env'; // don't add `.js`!
 import * as process from "node:process";
 
 const knexConfig: { [key: string]: Knex.Config } = {
@@ -14,13 +14,13 @@ const knexConfig: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: './src/database/migrations'
+      directory: './src/database/migrations',
     },
     seeds: {
-      directory: './seeds'
+      directory: './src/database/seeds'
     },
   },
 
 };
 
-export default knexConfig;
+export = knexConfig;
