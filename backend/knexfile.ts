@@ -1,5 +1,5 @@
 import type { Knex } from 'knex';
-import './src/utils/load-env'; // don't add `.js`!
+import './src/utils/load-env';
 import * as process from "node:process";
 
 const knexConfig: { [key: string]: Knex.Config } = {
