@@ -1,19 +1,19 @@
 import UserService from "@/services/UserService";
 import { Request, Response } from "express";
-
-import {constants} from 'http2'
+import {StatusCodes} from "http-status-codes";
 
 export default class UserController {
     userService: UserService;
     constructor(userService: UserService) {
         this.userService = userService;
     }
+
     register = async (req: Request, res: Response) => {
         try {
             const user = await this.userService.register(req.body);
-            res.status(constants.HTTP_STATUS_CREATED).json(user);
+            res.status(StatusCodes.CREATED).json(user);
         } catch (err: any) {
-            res.status(constants.HTTP_STATUS_BAD_REQUEST).json({  message: 'Internal Server Error'});
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({  message: 'Internal Server Error'});
             console.log(err);
         }
     };
@@ -22,15 +22,15 @@ export default class UserController {
         try {
             const user = await this.userService.login(req.body.email, req.body.password);
             req.session.user = user;
-            res.status(constants.HTTP_STATUS_OK).json(user);
+            res.status(StatusCodes.OK).json(user);
         } catch (err: any) {
-            res.status(constants.HTTP_STATUS_UNAUTHORIZED).json({ error: err.message });
+            res.status(StatusCodes.UNAUTHORIZED).json({ error: err.message });
         }
     };
 
     logout = (req: Request, res: Response) => {
         req.session.destroy(() => {
-            res.status(constants.HTTP_STATUS_OK).json({ message: 'Logged out' });
+            res.status(StatusCodes.OK).json({ message: 'Logged out' });
         });
     };
 

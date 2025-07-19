@@ -57,7 +57,7 @@ app.use(session({
 
 // const users = [{ username: "admin", password: "admin" }];
 
-app.use(routes(userController));
+app.use(routes(courseController,userController, lessonController));
 // Auth routes
 // app.post("/api/login", (req, res) => {
 //   const { username, password } = req.body;
